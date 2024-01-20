@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stone Paper Scissors</title>
+  <style>
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      font-family: Arial, sans-serif;
+    }
+
+    #result {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    #choices {
+      display: flex;
+      gap: 20px;
+    }
+
+    .choice-btn {
+      font-size: 16px;
+      cursor: pointer;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div id="result"></div>
+<div id="choices">
+  <button class="choice-btn" onclick="playGame('stone')">Stone</button>
+  <button class="choice-btn" onclick="playGame('paper')">Paper</button>
+  <button class="choice-btn" onclick="playGame('scissors')">Scissors</button>
+</div>
+
+<script>
+  function playGame(playerChoice) {
+    const choices = ['stone', 'paper', 'scissors'];
+    const computerChoice = choices[Math.floor(Math.random() * choices.length)];
+
+    const resultElement = document.getElementById('result');
+    resultElement.textContent = `You chose ${playerChoice}. Computer chose ${computerChoice}.`;
+
+    if (playerChoice === computerChoice) {
+      resultElement.textContent += " It's a tie!";
+    } else if (
+      (playerChoice === 'stone' && computerChoice === 'scissors') ||
+      (playerChoice === 'paper' && computerChoice === 'stone') ||
+      (playerChoice === 'scissors' && computerChoice === 'paper')
+    ) {
+      resultElement.textContent += ' You win!';
+    } else {
+      resultElement.textContent += ' Computer wins!';
+    }
+  }
+</script>
+
+</body>
+</html>
